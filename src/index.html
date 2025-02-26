@@ -34,15 +34,59 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            fetch("components/navbar.html").then(res => res.text()).then(data => {
-                document.getElementById("navbar-container").innerHTML = data;
-            });
-
-            fetch("components/bottom-navigation.html").then(res => res.text()).then(data => {
-                document.getElementById("bottom-nav-container").innerHTML = data;
-            });
+            // โหลด Navbar ด้านบน
+            fetch("components/navbar.html")
+                .then(res => res.text())
+                .then(data => {
+                    document.getElementById("navbar-container").innerHTML = data;
+                });
+    
+            // โหลด Bottom Navigation Bar ด้านล่าง
+            fetch("components/bottom-navigation.html")
+                .then(res => res.text())
+                .then(data => {
+                    document.getElementById("bottom-nav-container").innerHTML = data;
+                })
+                .then(() => {
+                    // หลังจากโหลด Bottom Navigation เสร็จแล้ว ให้รันโค้ดเปลี่ยนสี
+                    updateNavColors();
+                });
         });
+    
+        function updateNavColors() {
+            const currentPath = window.location.pathname;
+    
+            const homeNav = document.getElementById("nav-home");
+            const settingsNav = document.getElementById("nav-settings");
+    
+            if (!homeNav || !settingsNav) {
+                console.error("Navigation elements not found");
+                return;
+            }
+    
+            const homeIcon = homeNav.querySelector("i");
+            const homeText = homeNav.querySelector("span");
+    
+            const settingsIcon = settingsNav.querySelector("i");
+            const settingsText = settingsNav.querySelector("span");
+    
+            if (currentPath.includes("index.html")) {
+                homeIcon.classList.add("text-danger");
+                homeText.classList.add("text-danger");
+    
+                settingsIcon.classList.add("text-secondary");
+                settingsText.classList.add("text-secondary");
+    
+            } else if (currentPath.includes("setting.html")) {
+                homeIcon.classList.add("text-secondary");
+                homeText.classList.add("text-secondary");
+    
+                settingsIcon.classList.add("text-danger");
+                settingsText.classList.add("text-danger");
+            }
+        }
     </script>
+    
 
 </body>
 </html>
