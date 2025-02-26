@@ -1,0 +1,51 @@
+<nav class="navbar fixed-bottom navbar-light bg-light border-top d-md-none">
+    <div class="container d-flex justify-content-around">
+        <a href="/src/index.html" class="text-center nav-item" id="nav-home">
+            <i class="bi bi-house-door-fill fs-4"></i><br>
+            <span class="small">หน้าหลัก</span>
+        </a>
+        <a href="#" class="text-center nav-item" id="nav-articles">
+            <i class="bi bi-book fs-4"></i><br>
+            <span class="small">บทความ</span>
+        </a>
+        <a href="#" class="text-center nav-item" id="nav-exercise">
+            <i class="bi bi-heart fs-4"></i><br>
+            <span class="small">ออกกำลังกาย</span>
+        </a>
+        <a href="/src/setting.html" class="text-center nav-item" id="nav-settings">
+            <i class="bi bi-gear fs-4"></i><br>
+            <span class="small">ตั้งค่า</span>
+        </a>
+    </div>
+</nav>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const currentPath = window.location.pathname;
+
+        const homeNav = document.getElementById("nav-home");
+        const settingsNav = document.getElementById("nav-settings");
+
+        const homeIcon = homeNav.querySelector("i");
+        const homeText = homeNav.querySelector("span");
+
+        const settingsIcon = settingsNav.querySelector("i");
+        const settingsText = settingsNav.querySelector("span");
+
+        if (currentPath.includes("index.html")) {
+            homeIcon.classList.add("text-danger");
+            homeText.classList.add("text-danger");
+
+            settingsIcon.classList.add("text-secondary");
+            settingsText.classList.add("text-secondary");
+
+        } else if (currentPath.includes("setting.html")) {
+            homeIcon.classList.add("text-secondary");
+            homeText.classList.add("text-secondary");
+
+            settingsIcon.classList.add("text-danger");
+            settingsText.classList.add("text-danger");
+        }
+    });
+</script>
+
